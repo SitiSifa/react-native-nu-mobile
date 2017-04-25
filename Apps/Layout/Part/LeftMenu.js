@@ -7,7 +7,9 @@ import {
   Container,
   Header, 
   Content,
-  List, 
+  FooterTab,
+  Footer,
+  List,
   ListItem, 
   Thumbnail,
   Text, 
@@ -19,13 +21,41 @@ import {
   Switch,
   Button,
 } from 'native-base'
+import { getSession, removeSession } from './../../Libs/Session'
 
 import Base from './../../Style/Base'
 const AVATAR = require('../../img/warga.png')
 
 export default class LeftMenu extends Component {
   static PropTypes = {
+    setLogin: PropTypes.func.isRequired,
     closeDrawer: PropTypes.func.isRequired,
+  }
+
+  state = {
+    id: 0,
+    username: '',
+    nama: '',
+    email: '',
+  }
+
+  componentWillMount() {
+    getSession('loginNUMobile').then((data) => {
+      if (data !== false) {
+        this.setState({
+          id: data.id,
+          username: data.username,
+          nama: data.nama,
+          email: data.email,
+        })
+      }
+    })
+  }
+
+  logOutHandler = () => {
+    removeSession('loginNUMobile')
+    this.props.setLogin(false)
+    this.props.closeDrawer()
   }
 
   render() {
@@ -45,8 +75,8 @@ export default class LeftMenu extends Component {
             <ListItem>
                 <Thumbnail square size={80} source={AVATAR} />
                 <Body>
-                    <Text>User</Text>
-                    <Text note>Warga</Text>
+                    <Text>{this.state.nama}</Text>
+                    <Text note>{this.state.email}</Text>
                 </Body>
             </ListItem>
             <ListItem icon>
@@ -85,16 +115,15 @@ export default class LeftMenu extends Component {
                 </Body>
                 <Right/>
             </ListItem>
-            <ListItem icon>
-                <Left>
-                    <Icon name='log-out' />
-                </Left>
-                <Body>
-                  <Text>Logout</Text>
-                </Body>
-                <Right/>
-            </ListItem>
           </Content>
+          <Footer>
+            <FooterTab>
+              <Button full iconLeft onPress={this.logOutHandler}>
+                <Icon name='log-out' style={Base.sidebarIconFooter}/>
+                <Text style={Base.sidebarTextFooter}>Logout</Text>
+              </Button>
+            </FooterTab>
+          </Footer> 
         </Container>
       </ScrollView>
     )

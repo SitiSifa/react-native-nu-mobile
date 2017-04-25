@@ -6,6 +6,7 @@ import {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: '#9A9C9A',
 	},
 	content:{
 		alignItems: 'center',

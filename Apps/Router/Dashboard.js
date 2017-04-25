@@ -15,7 +15,6 @@ class Dashboard extends Component {
   render() {
     return (
         <View style={styles.position}>
-            <Image source={require('../img/numobile.png')} style={styles.imageLogo}/>
               <View style={styles.rowOne}>
                     <Image source={require('../img/pengurus.png')} style={styles.imageContent}/>
                     <Image source={require('../img/warga.png')} style={styles.imageContent}/>

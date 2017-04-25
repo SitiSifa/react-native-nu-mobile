@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react'
 import Layout from './Layout/Simple'
+import { getSession } from './Libs/Session'
 
 // Routes
 import Dashboard from './Router/Dashboard'
@@ -11,14 +12,33 @@ import Profile from './Router/Profile'
 import Kegiatan from './Router/Kegiatan'
 import Pengurus from './Router/Pengurus'
 import Login from './Router/Login'
-
-const BACKGROUND = require('./img/background.png')
+import Spinner from './Router/Splash'
 
 class Main extends Component {
   state = {
-    title: 'Dashboard',
+    title: 'Login',
     active: 'Login',
     isLogin: false,
+    init: true,
+  }
+
+  componentWillMount() {
+    getSession('loginNUMobile').then((data) => {
+      if (data !== false) {
+        this.setLogin(true)
+      }
+      this.setState({init: false})
+    })
+  }
+
+  setLogin = (isLogin) => {
+    this.setState({
+      isLogin: isLogin,
+    })
+    
+    const pageActive = isLogin ? 'Dashboard' : 'Login'
+    this.setTitle(pageActive)
+    this.setContent(pageActive)
   }
 
   setTitle = (title) => {
@@ -38,7 +58,9 @@ class Main extends Component {
 
     switch (label) {
       case 'Login':
-          return(<Login />)
+          return(
+            <Login setLogin={this.setLogin}/>
+          )
           break
       case 'Profile':
         return(<Profile />)
@@ -55,9 +77,13 @@ class Main extends Component {
   }
 
   render() {
+    if (this.state.init) {
+      return (<Spinner />)
+    }
     return (
       <Layout
         isLogin={this.state.isLogin}
+        setLogin={this.setLogin}
         title={this.state.title}
         setTitle={this.setTitle}
         setContent={this.setContent}

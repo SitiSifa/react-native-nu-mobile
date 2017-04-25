@@ -17,6 +17,12 @@ const styles = {
       shadowRadius: 15,
     }
   },
+  sidebarIconFooter: {
+    color: '#FFF',
+  },
+  sidebarTextFooter: {
+    color: '#FFF',
+  },
   welcome: {
     fontSize: 20,
     margin: 10,

@@ -10,8 +10,8 @@ import {
   ListItem,
   Thumbnail,
   Text,
-  Body } from 'native-base'
-import GiftedSpinner from 'react-native-gifted-spinner'
+  Body 
+} from 'native-base'
 import GiftedListView from 'react-native-gifted-listview'
 import Spinner from 'react-native-loading-spinner-overlay'
 
@@ -93,7 +93,7 @@ class Profile extends Component {
             size='small'
           />
         </Content>
-        </Container>
+      </Container>
     )
   }
 

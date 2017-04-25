@@ -15,7 +15,6 @@ export default class ModelUser extends RestClient {
     return this.POST('/member/post/', data)
       .then(response => response)
       .catch((error) => {
-        console.log(error)
         return LIST_DEFAULT
       })
   }
