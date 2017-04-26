@@ -22,6 +22,7 @@ export default class Simple extends Component {
     setLogin: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     setTitle: PropTypes.func.isRequired,
+    setContent: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
   }
 
@@ -41,7 +42,11 @@ export default class Simple extends Component {
     return (
       <Drawer
         styles={Base.containerDrawer}
-        content={<LeftMenu setLogin={this.props.setLogin} closeDrawer={this.closeDrawer} />}
+        content={<LeftMenu 
+          setLogin={this.props.setLogin}
+          setTitle={this.props.setTitle}
+          setContent={this.props.setContent} 
+          closeDrawer={this.closeDrawer} />}
         open={this.state.drawerOpen}
         onOpen={() => {
           this.setState({drawerOpen: true})

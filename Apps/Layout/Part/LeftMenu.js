@@ -29,6 +29,8 @@ const AVATAR = require('../../img/warga.png')
 export default class LeftMenu extends Component {
   static PropTypes = {
     setLogin: PropTypes.func.isRequired,
+    setTitle: PropTypes.func.isRequired,
+    setContent: PropTypes.func.isRequired,
     closeDrawer: PropTypes.func.isRequired,
   }
 
@@ -52,6 +54,12 @@ export default class LeftMenu extends Component {
     })
   }
 
+  toPageHandler = (page) => {
+    this.props.setTitle(page)
+    this.props.setContent(page)
+    this.props.closeDrawer()
+  }
+
   logOutHandler = () => {
     removeSession('loginNUMobile')
     this.props.setLogin(false)
@@ -72,14 +80,14 @@ export default class LeftMenu extends Component {
             </Right>
           </Header>
           <Content>
-            <ListItem>
+            <ListItem onPress={ () => this.toPageHandler('Profile') }>
                 <Thumbnail square size={80} source={AVATAR} />
                 <Body>
                     <Text>{this.state.nama}</Text>
                     <Text note>{this.state.email}</Text>
                 </Body>
             </ListItem>
-            <ListItem icon>
+            <ListItem icon onPress={ () => this.toPageHandler('Dashboard') }>
                 <Left>
                     <Icon name='home' />
                 </Left>
@@ -88,7 +96,7 @@ export default class LeftMenu extends Component {
                 </Body>
                 <Right/>
             </ListItem>
-            <ListItem icon>
+            <ListItem icon onPress={ () => this.toPageHandler('Profile') }>
                 <Left>
                     <Icon name='person' />
                 </Left>
@@ -97,7 +105,7 @@ export default class LeftMenu extends Component {
                 </Body>
                 <Right/>
             </ListItem>
-            <ListItem icon>
+            <ListItem icon onPress={ () => this.toPageHandler('Pengaturan') }>
                 <Left>
                     <Icon name='settings' />
                 </Left>
@@ -106,7 +114,7 @@ export default class LeftMenu extends Component {
                 </Body>
                 <Right/>
             </ListItem>
-            <ListItem icon>
+            <ListItem icon onPress={ () => this.toPageHandler('Bantuan') }>
                 <Left>
                     <Icon name='help' />
                 </Left>

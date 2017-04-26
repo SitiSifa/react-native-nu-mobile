@@ -72,7 +72,9 @@ class Main extends Component {
         return(<Pengurus />)
         break
       default:
-        return(<Dashboard />)
+        return(
+          <Dashboard setTitle={this.setTitle} setContent={this.setContent}/>
+        )
     }
   }
 
