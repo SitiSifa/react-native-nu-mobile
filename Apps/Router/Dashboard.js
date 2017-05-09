@@ -54,7 +54,7 @@ class Dashboard extends Component {
               <Card>
                 <CardItem 
                   cardBody 
-                  onPress={ () => this.onPressHandler('Profile') }>
+                  onPress={ () => this.onPressHandler('Warga') }>
                   <Image source={require('../img/warga.png')} style={styles.imageContent}/>
                 </CardItem>
               </Card>

@@ -9,15 +9,8 @@ import {
   Content,
   ListItem,
   Thumbnail,
-  Icon,
-  CardItem,
-  Card,
-  Col,
-  Grid,
-  Left,
-  Right,
   Text,
-  Body
+  Body 
 } from 'native-base'
 import GiftedListView from 'react-native-gifted-listview'
 import Spinner from 'react-native-loading-spinner-overlay'
@@ -28,10 +21,10 @@ import styles from './../Style/List'
 
 const AVATAR = require('../img/warga.png')
 
-class Profile extends Component {
+class Warga extends Component {
 
   state = {
-    loading: false,
+    loading: true,
     total: 0,
     data: [],
   }
@@ -139,70 +132,22 @@ class Profile extends Component {
     }
 
     return (
-      <Container>
-        <Content>
-          <Grid>
-            <Col style={{height: 200}}>
-              <Left />
-              <Body>
-                <Thumbnail size={100} source={require('../img/promosi.png')} />
-                <Text>Nedya Amrih Prakasa</Text>
-              </Body>
-              <Right />
-            </Col>
-          </Grid>
-          <Grid>
-            <Col style={{height: 90}}>
-              <Card>
-                <CardItem>
-                  <Body style={{justifyContent:'center', alignItems:'center'}}>
-                    <Icon name="people" />
-                    <Text style={{fontSize: 18, fontWeight: 'bold', textAlign: 'center'}}>5</Text>
-                  </Body>
-                </CardItem>
-              </Card>
-            </Col>
-            <Col style={{height: 90}}>
-              <Card>
-                <CardItem>
-                  <Body style={{justifyContent:'center', alignItems:'center'}}>
-                    <Icon name="images" />
-                    <Text style={{fontSize: 18, fontWeight: 'bold', textAlign: 'center'}}>0</Text>
-                  </Body>
-                </CardItem>
-              </Card>
-            </Col>
-          </Grid>
-          <Grid>
-            <Col>
-              <Card>
-                <CardItem>
-                  <Icon name='mail' style={{fontSize: 18}}/>
-                  <Text style={{fontSize: 14}}>email@gmail.com</Text>
-                </CardItem>
-                <CardItem>
-                  <Icon name='phone-portrait' style={{fontSize: 18}}/>
-                  <Text style={{fontSize: 14}}>+6285722560657</Text>
-                </CardItem>
-                <CardItem>
-                  <Icon name='logo-facebook' style={{fontSize: 18}}/>
-                  <Text style={{fontSize: 14}}>PrakasaLord</Text>
-                </CardItem>
-                <CardItem>
-                  <Icon name='logo-googleplus' style={{fontSize: 18}}/>
-                  <Text style={{fontSize: 14}}>Prakasa Lord</Text>
-                </CardItem>
-                <CardItem>
-                  <Icon name='logo-twitter' style={{fontSize: 18}}/>
-                  <Text style={{fontSize: 14}}>na_raka</Text>
-                </CardItem>
-              </Card>
-            </Col>
-          </Grid>
-        </Content>
-      </Container>
-    )
+      <View style={styles.Container}>
+          <GiftedListView
+            pagination={true}
+            firstLoader={false}
+            refreshable={true}
+            withSections={false}
+            enableEmptySections={true}
+            onFetch={this.onFetch}
+            rowView={this.renderRowView}
+            paginationAllLoadedView={this.renderPaginationAllLoadedView}
+            paginationWaitingView={this.renderPaginationWaitingView}
+            emptyView={this.renderEmptyView}
+          />
+      </View>
+    );
   }
 }
 
-export default Profile
+export default Warga

@@ -50,6 +50,19 @@ class ContentLayout extends Component {
           </Header>
         }
         { this.props.children }
+        <Footer >
+          <FooterTab>
+            <Button active>
+              <Icon active name="camera" />
+            </Button>
+            <Button>
+              <Icon name="videocam" />
+            </Button>
+            <Button>
+              <Icon name="navigate" />
+            </Button>
+          </FooterTab>
+        </Footer>
       </Container>
     );
   }

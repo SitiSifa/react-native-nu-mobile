@@ -8,6 +8,7 @@ import { getSession } from './Libs/Session'
 
 // Routes
 import Dashboard from './Router/Dashboard'
+import Warga from './Router/Warga'
 import Profile from './Router/Profile'
 import Kegiatan from './Router/Kegiatan'
 import Pengurus from './Router/Pengurus'
@@ -62,6 +63,9 @@ class Main extends Component {
             <Login setLogin={this.setLogin}/>
           )
           break
+      case 'Warga':
+        return(<Warga />)
+        break
       case 'Profile':
         return(<Profile />)
         break
